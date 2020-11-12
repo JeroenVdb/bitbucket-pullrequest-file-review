@@ -34,7 +34,7 @@ export class PullRequest {
 		}
 	}
 
-	getState(): { [key: string]: boolean } {
+	getState(): pullRequestState {
 		return JSON.parse(window.localStorage.getItem(PullRequestPage.getLocalStorageKey()) || '{}');
 	}
 
@@ -50,3 +50,5 @@ export class PullRequest {
 		}
 	}
 }
+
+type pullRequestState = { [key: string]: boolean }

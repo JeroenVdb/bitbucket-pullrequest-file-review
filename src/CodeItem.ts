@@ -27,7 +27,7 @@ export class CodeItem {
 		this.colorHeader(this.pullRequestItem.filePath);
 	}
 
-	colorHeader(filePath: string) {
+	private colorHeader(filePath: string) {
 		const codeItemHeader = PullRequestPage.getCodeItemHeader(filePath);
 
 		if (codeItemHeader === null) {
