@@ -27,6 +27,7 @@ export class PullRequestPage {
 
 		if (clickableCodeItemHeader === null) {
 			console.log(`codeItem header for ${filePath} was not yet rendered`);
+			return;
 		}
 
 		clickableCodeItemHeader.click();

@@ -34,6 +34,17 @@ describe('PullRequestPage', function () {
 		expect(document.getElementById('chg-foo/bar.js')!.nextElementSibling).toBe(button);
 	});
 
+	it('should throw an error when review button cannot be added', function () {
+		const mock = jest.spyOn(PullRequestPage, 'getCodeItemAnchorElement');
+		mock.mockReturnValue(null);
+
+		const button = document.createElement('button');
+		expect(() => {
+			PullRequestPage.addActionButton('foo/bar.js', button);
+		}).toThrow();
+
+		mock.mockRestore();
+	});
 
 	it('should know if the code review is loaded', function () {
 		expect(PullRequestPage.codeReviewLoaded()).toBe(true);
@@ -41,6 +52,10 @@ describe('PullRequestPage', function () {
 
 	it('should know if the code review is fully rendered', function () {
 		expect(PullRequestPage.CodeAndOverviewItemsLoaded()).toBe(true);
+	});
+
+	it('should add a review progress box', function () {
+		expect(PullRequestPage.addReviewProgress()).toBeInstanceOf(HTMLElement);
 	});
 
 	it('should get the localStorage key', function () {
