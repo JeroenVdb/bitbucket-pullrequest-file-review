@@ -1,18 +1,26 @@
 {
-  "name": "Improved Bitbucket Pull Requests",
+  "name": "Bitbucket Pull Request File review",
   "version": "1.0",
-  "description": "Improved Bitbucket Pull Requests",
+  "description": "Mark individual files as reviewed in Bitbucket Pull Requests",
   "manifest_version": 2,
   "permissions": [
+    "https://bitbucket.org/*/pull-requests/*",
+    "tabs",
+    "webNavigation",
     "activeTab"
   ],
   "content_scripts": [
     {
       "matches": ["https://bitbucket.org/*/pull-requests/*"],
-      "js": ["contentScript.js"],
+      "js": ["bitbucket-pr-file-review.js"],
       "run_at": "document_end"
     }
   ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
   "browser_action": {
     "default_icon": "focus.png"
   }

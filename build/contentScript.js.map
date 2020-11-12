@@ -1,1 +1,0 @@
-{"version":3,"file":"contentScript.js","sourceRoot":"","sources":["../src/contentScript.ts"],"names":[],"mappings":";;AAAA,wCAAgD;AAEhD,OAAO,CAAC,GAAG,CAAC,0BAAkB,CAAC,QAAQ,CAAC,CAAC,CAAC;AAG1C,MAAM,eAAe;IAIpB,YAAY,YAA0B;QACrC,IAAI,CAAC,YAAY,GAAG,YAAY,CAAC;QACjC,IAAI,CAAC,QAAQ,GAAG,EAAE,CAAC;IACpB,CAAC;CACD;AAED,MAAM,YAAY;CAEjB;AAED,MAAM,QAAQ;CAEb"}

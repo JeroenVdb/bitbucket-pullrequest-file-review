@@ -19,6 +19,7 @@
             const clickableCodeItemHeader = document.querySelector(`[aria-label="Diff of file ${filePath}"] [aria-label="Expand/collapse file"]`);
             if (clickableCodeItemHeader === null) {
                 console.log(`codeItem header for ${filePath} was not yet rendered`);
+                return;
             }
             clickableCodeItemHeader.click();
         }
@@ -197,8 +198,10 @@
         }
     }
 
+    console.log('[bitbucket-pr-files-review] is loaded');
     const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
         if (PullRequestPage.codeReviewLoaded()) {
+            console.log('[bitbucket-pr-files-review] pull request is ready to be initiated');
             window.clearInterval(checkCodeReviewLoadedAndInitialize);
             window.pullRequest = new PullRequest();
             document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').forEach((item) => {
@@ -226,6 +229,7 @@
                 }, 300);
             }
         }
+        console.log('[bitbucket-pr-files-review] pull request is not loaded enough yet, try again in 1s');
     }, 1000);
 
 }());

@@ -1,4 +1,6 @@
 import { PullRequest } from './PullRequest';
+import { PullRequestPage } from './PullRequestPage';
+import { PullRequestItem } from './PullRequestItem';
 
 declare global {
 	interface Window {
@@ -6,11 +8,12 @@ declare global {
 	}
 }
 
-import { PullRequestPage } from './PullRequestPage';
-import { PullRequestItem } from './PullRequestItem';
+console.log('[bitbucket-pr-files-review] is loaded');
 
 const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 	if (PullRequestPage.codeReviewLoaded()) {
+		console.log('[bitbucket-pr-files-review] pull request is ready to be initiated');
+
 		window.clearInterval(checkCodeReviewLoadedAndInitialize);
 		window.pullRequest = new PullRequest();
 		document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').forEach((item: Element) => {
@@ -21,17 +24,6 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 				window.pullRequest.addItem(filePath, prItem);
 			}
 		});
-
-		/*window.addEventListener("scroll", () => {
-				window.pullRequest.syncState();
-			}, {passive: true});*/
-
-		/*const syncStateInterval = window.setInterval(() => {
-			window.pullRequest.syncState();
-			if (PullRequestPage.CodeAndOverviewItemsLoaded()) {
-				window.clearInterval(syncStateInterval);
-			}
-		}, 2500)*/
 
 		window.pullRequest.syncState();
 
@@ -55,4 +47,5 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 			}, 300);
 		}
 	}
+	console.log('[bitbucket-pr-files-review] pull request is not loaded enough yet, try again in 1s');
 }, 1000);
