@@ -40,9 +40,9 @@ export class PullRequest {
 
 	syncState() {
 		const state = this.getState();
-		for (const [key, value] of Object.entries(state)) {
-			if (value === false) {
-				const file = this.files.get(key);
+		for (const [filePath, isExpanded] of Object.entries(state)) {
+			if (isExpanded === false) {
+				const file = this.files.get(filePath);
 				if (file) {
 					file.setReviewed();
 				}

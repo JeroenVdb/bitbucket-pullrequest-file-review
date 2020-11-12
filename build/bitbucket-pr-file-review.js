@@ -162,8 +162,8 @@
             this.files = new Map();
             this.reviewProgressBox = PullRequestPage.addReviewProgress();
         }
-        addItem(filePath, item) {
-            this.files.set(filePath, item);
+        addItem(item) {
+            this.files.set(item.filePath, item);
         }
         numberOfFiles() {
             return this.files.size;
@@ -187,9 +187,9 @@
         }
         syncState() {
             const state = this.getState();
-            for (const [key, value] of Object.entries(state)) {
-                if (value === false) {
-                    const file = this.files.get(key);
+            for (const [filePath, isExpanded] of Object.entries(state)) {
+                if (isExpanded === false) {
+                    const file = this.files.get(filePath);
                     if (file) {
                         file.setReviewed();
                     }
@@ -208,8 +208,7 @@
                 const link = item.getAttribute('href');
                 if (link !== null) {
                     const filePath = PullRequestPage.getFilePathFromOverviewItemUrl(link);
-                    const prItem = new PullRequestItem(window.pullRequest, filePath);
-                    window.pullRequest.addItem(filePath, prItem);
+                    window.pullRequest.addItem(new PullRequestItem(window.pullRequest, filePath));
                 }
             });
             window.pullRequest.syncState();

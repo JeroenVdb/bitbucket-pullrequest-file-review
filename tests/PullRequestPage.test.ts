@@ -15,6 +15,10 @@ describe('PullRequestPage', function () {
 		expect(PullRequestPage.getCodeItemElement('foo/bar.js')).toBe(codeItem);
 	});
 
+	it('should get code item, or null', function () {
+		expect(PullRequestPage.getCodeItemElement('foo/other-bar.js')).toBe(null);
+	});
+
 	it('should click the header', function () {
 		var isClicked = false;
 		codeItemHeaderClickableArea.addEventListener('click', () => {
@@ -22,6 +26,13 @@ describe('PullRequestPage', function () {
 		});
 		PullRequestPage.closeCodeItem('foo/bar.js');
 		expect(isClicked).toBeTruthy();
+	});
+
+	it('should give a warning when the header is not there', function () {
+		document.querySelector('[data-qa=bk-file__header]')!.innerHTML = '';
+		const spy = jest.spyOn(console, 'log');
+		PullRequestPage.closeCodeItem('foo/bar.js');
+		expect(spy).toBeCalledTimes(1);
 	});
 
 	it('should get code item header', function () {

@@ -77,4 +77,76 @@ describe('PullRequestItem', function () {
 		expect(pullRequest.numberOfFiles()).toBe(2);
 		expect(pullRequest.numberOfReviewedFiles()).toBe(1);
 	});
+
+	it('should update the progress box', () => {
+
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue(document.createElement('div'));
+
+		const pullRequest = new PullRequest();
+		pullRequest.updateProgress();
+
+		expect(pullRequest.reviewProgressBox!.innerHTML).toContain('e10navn00');
+	});
+
+	it('should get state from localStorage', () => {
+
+		delete window.localStorage.getItem;
+
+		window.localStorage.getItem = function() {
+			return null;
+		}
+
+		const pullRequest = new PullRequest();
+
+		expect(pullRequest.getState()).toStrictEqual({});
+	});
+
+	it('should sync state', () => {
+
+		delete window.localStorage.getItem;
+
+		window.localStorage.getItem = function() {
+			return JSON.stringify({
+				'foo/bar1.js': false,
+				'foo/bar2.js': false
+			});
+		}
+
+		const pullRequest = new PullRequest();
+		const fakePullRequestItem = new PullRequestItem(pullRequest, 'foobar');
+
+		mocked(PullRequestItem).mockImplementation((pullRequest: PullRequest, filePath: string) => {
+			return {
+				filePath: filePath,
+				pullRequest: pullRequest,
+				overviewItem: new OverviewItem(filePath),
+				codeItem: new CodeItem(filePath, fakePullRequestItem),
+				reviewed: reviewState.NOT_REVIEWED,
+				markReviewed() {},
+				setReviewed() {},
+				setAsReviewed() {}
+			}
+		});
+
+		const prItemOne = new PullRequestItem(pullRequest, 'foo/bar1.js')
+		const prItemTwo = new PullRequestItem(pullRequest, 'foo/bar2.js')
+
+		const spyPrItemOne = jest.spyOn(prItemOne, 'setReviewed')
+		const spyPrItemTwo = jest.spyOn(prItemTwo, 'setReviewed')
+
+		const mockGetState = jest.spyOn(pullRequest, 'getState').mockReturnValue({
+			'foo/bar1.js': false,
+			'foo/bar2.js': false
+		});
+
+		pullRequest.addItem(prItemOne);
+		pullRequest.addItem(prItemTwo);
+
+		pullRequest.syncState();
+
+		expect(spyPrItemOne).toBeCalledTimes(1);
+		expect(spyPrItemTwo).toBeCalledTimes(1);
+
+		mockGetState.mockRestore();
+	});
 });
