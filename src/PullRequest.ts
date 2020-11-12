@@ -10,8 +10,8 @@ export class PullRequest {
 		this.reviewProgressBox = PullRequestPage.addReviewProgress();
 	}
 
-	addItem(filePath: string, item: PullRequestItem) {
-		this.files.set(filePath, item);
+	addItem(item: PullRequestItem) {
+		this.files.set(item.filePath, item);
 	}
 
 	numberOfFiles(): number {

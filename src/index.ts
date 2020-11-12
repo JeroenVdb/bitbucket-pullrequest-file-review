@@ -20,8 +20,9 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 			const link = item.getAttribute('href');
 			if (link !== null) {
 				const filePath = PullRequestPage.getFilePathFromOverviewItemUrl(link);
-				const prItem = new PullRequestItem(window.pullRequest, filePath);
-				window.pullRequest.addItem(filePath, prItem);
+				window.pullRequest.addItem(
+					new PullRequestItem(window.pullRequest, filePath)
+				);
 			}
 		});
 
