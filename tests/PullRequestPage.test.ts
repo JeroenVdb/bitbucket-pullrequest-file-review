@@ -1,6 +1,6 @@
 import {PullRequestPage} from "../src/PullRequestPage";
 
-import { codeItem, codeItemAnchor, codeItemHeader, codeItemHeaderClickableArea, overviewItem, pullRequestPage } from './stubbedPullRequestPage';
+import { codeItem, codeItemAnchor, codeItemHeader, codeItemHeaderClickableArea, overviewItem, pullRequestPage } from './pullRequestPageStubs';
 
 describe('PullRequestPage', function () {
 	it('should get overview items', function () {
