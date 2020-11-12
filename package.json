@@ -1,0 +1,28 @@
+{
+  "name": "clickable-google-meet-logo",
+  "version": "1.0.0",
+  "description": "Make the Google Meet logo clickable",
+  "scripts": {
+    "test": "jest",
+    "build": "npx rollup -c"
+  },
+  "author": "Jeroen Van den Berghe",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@jeroenvdb/prettier-config": "^1.0.4",
+    "@rollup/plugin-typescript": "^6.1.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.0.5",
+    "jest": "^26.6.3",
+    "prettier": "^2.0.5",
+    "rollup": "^2.33.1",
+    "ts-jest": "^26.4.3",
+    "ts-node": "^8.10.1",
+    "tslib": "^2.0.3",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "ws": "^7.3.1"
+  }
+}
