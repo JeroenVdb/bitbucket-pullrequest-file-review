@@ -76,7 +76,7 @@
         constructor(filePath) {
             const overviewItemElement = PullRequestPage.getOverviewItemElement(filePath);
             if (overviewItemElement === null) {
-                throw Error(`No overview item found for file ${filePath}`);
+                throw new Error(`No overview item found for file ${filePath}`);
             }
             this.domElement = overviewItemElement;
         }
@@ -107,7 +107,7 @@
         colorHeader(filePath) {
             const codeItemHeader = PullRequestPage.getCodeItemHeader(filePath);
             if (codeItemHeader === null) {
-                console.log(`codeItem header for ${filePath} was not yet rendered`);
+                console.log(`code item header for ${filePath} was not yet rendered`);
                 return;
             }
             codeItemHeader.style.background = '#e3fcef';
