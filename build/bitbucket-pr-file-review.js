@@ -1,4 +1,4 @@
-(function () {
+var prfilereview = (function (exports) {
     'use strict';
 
     class PullRequestPage {
@@ -199,19 +199,20 @@
     }
 
     console.log('[bitbucket-pr-files-review] is loaded');
+
     const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
         if (PullRequestPage.codeReviewLoaded()) {
             console.log('[bitbucket-pr-files-review] pull request is ready to be initiated');
+            exports.pullRequest = new PullRequest();
             window.clearInterval(checkCodeReviewLoadedAndInitialize);
-            window.pullRequest = new PullRequest();
             document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').forEach((item) => {
                 const link = item.getAttribute('href');
                 if (link !== null) {
                     const filePath = PullRequestPage.getFilePathFromOverviewItemUrl(link);
-                    window.pullRequest.addItem(new PullRequestItem(window.pullRequest, filePath));
+                    exports.pullRequest.addItem(new PullRequestItem(exports.pullRequest, filePath));
                 }
             });
-            window.pullRequest.syncState();
+            exports.pullRequest.syncState();
             document.addEventListener('scroll', syncState);
             let debounce_timer;
             function syncState() {
@@ -220,7 +221,7 @@
                 }
                 debounce_timer = window.setTimeout(function () {
                     console.log('sync state with localstorage');
-                    window.pullRequest.syncState();
+                    exports.pullRequest.syncState();
                     if (PullRequestPage.CodeAndOverviewItemsLoaded()) {
                         console.log('code and overview items are loaded remove eventListener');
                         document.removeEventListener('scroll', syncState);
@@ -231,4 +232,8 @@
         console.log('[bitbucket-pr-files-review] pull request is not loaded enough yet, try again in 1s');
     }, 1000);
 
-}());
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+    return exports;
+
+}({}));

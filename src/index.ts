@@ -10,23 +10,25 @@ declare global {
 
 console.log('[bitbucket-pr-files-review] is loaded');
 
+let pullRequest: PullRequest;
+
 const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 	if (PullRequestPage.codeReviewLoaded()) {
 		console.log('[bitbucket-pr-files-review] pull request is ready to be initiated');
 
+		pullRequest = new PullRequest();
 		window.clearInterval(checkCodeReviewLoadedAndInitialize);
-		window.pullRequest = new PullRequest();
 		document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').forEach((item: Element) => {
 			const link = item.getAttribute('href');
 			if (link !== null) {
 				const filePath = PullRequestPage.getFilePathFromOverviewItemUrl(link);
-				window.pullRequest.addItem(
-					new PullRequestItem(window.pullRequest, filePath)
+				pullRequest.addItem(
+					new PullRequestItem(pullRequest, filePath)
 				);
 			}
 		});
 
-		window.pullRequest.syncState();
+		pullRequest.syncState();
 
 		// @ts-ignore
 		document.addEventListener('scroll', syncState);
@@ -39,7 +41,7 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 
 			debounce_timer = window.setTimeout(function () {
 				console.log('sync state with localstorage');
-				window.pullRequest.syncState();
+				pullRequest.syncState();
 
 				if (PullRequestPage.CodeAndOverviewItemsLoaded()) {
 					console.log('code and overview items are loaded remove eventListener');
@@ -50,3 +52,5 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 	}
 	console.log('[bitbucket-pr-files-review] pull request is not loaded enough yet, try again in 1s');
 }, 1000);
+
+export { pullRequest }

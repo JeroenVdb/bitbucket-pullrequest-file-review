@@ -4,7 +4,8 @@ export default {
 	input: 'src/index.ts',
 	output: {
 		file: 'build/bitbucket-pr-file-review.js',
-		format: 'iife'
+		format: 'iife',
+		name: 'prfilereview'
 	},
 	treeshake: false,
 	plugins: [
