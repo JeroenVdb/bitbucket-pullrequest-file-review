@@ -86,7 +86,9 @@ describe('OverviewItem', function () {
 	});
 
 	beforeAll(() => {
-		fakePullRequestItem = new PullRequestItem(new PullRequest(), 'foo/bar.js');
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
+		const fakePullRequest = new PullRequest();
+		fakePullRequestItem = new PullRequestItem(fakePullRequest, 'foo/bar.js');
 	});
 });
 

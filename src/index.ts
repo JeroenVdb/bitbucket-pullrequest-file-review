@@ -8,13 +8,13 @@ declare global {
 	}
 }
 
-console.log('[bitbucket-pr-files-review] is loaded');
+console.log('[bb-pr-markfilesreviewed] is loaded');
 
 let pullRequest: PullRequest;
 
 const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 	if (PullRequestPage.codeReviewLoaded()) {
-		console.log('[bitbucket-pr-files-review] pull request is ready to be initiated');
+		console.log('[bb-pr-markfilesreviewed] pull request is ready to be initiated');
 
 		pullRequest = new PullRequest();
 		window.clearInterval(checkCodeReviewLoadedAndInitialize);
@@ -50,7 +50,7 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 			}, 300);
 		}
 	}
-	console.log('[bitbucket-pr-files-review] pull request is not loaded enough yet, try again in 1s');
+	console.log('[bb-pr-markfilesreviewed] pull request is not loaded enough yet, try again in 1s');
 }, 1000);
 
 export { pullRequest }

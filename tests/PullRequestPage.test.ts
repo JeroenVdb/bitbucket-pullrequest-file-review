@@ -66,7 +66,9 @@ describe('PullRequestPage', function () {
 	});
 
 	it('should add a review progress box', function () {
-		expect(PullRequestPage.addReviewProgress()).toBeInstanceOf(HTMLElement);
+		const reviewProgress = PullRequestPage.addReviewProgress();
+		expect(reviewProgress[0]).toBeInstanceOf(HTMLElement);
+		expect(reviewProgress[1]).toBeInstanceOf(HTMLElement);
 	});
 
 	it('should get the localStorage key', function () {

@@ -65,22 +65,33 @@ export class PullRequestPage {
 		return `${path[1]}/${path[2]}/${path[4]}:diffs-expanded-state`;
 	}
 
-	static addReviewProgress() {
+	static 	addReviewProgress() {
 		document
 			.querySelector('#PullRequestWelcomeTourTarget-Files')!
 			.parentElement!.insertAdjacentHTML('beforebegin', PullRequestPage.reviewProgressHTML());
-		return document.querySelector('.fjs-text');
+		return [ document.querySelector('.fjs-text') as HTMLElement, document.querySelector('.fjs-progress-bar') as HTMLElement ]
 	}
 
 	static reviewProgressHTML() {
 		return `
 			<div class="css-1z0at8b e8f23vi6" style="z-index: 8;">
 				<section aria-label="Build statuses" class="css-gjnwqt e1m6l9kn0">
-					<button aria-controls="expanderId-0" aria-expanded="true" data-testid="" class="css-1o91c15 e1m6l9kn1"><span class="css-1b5prcp e1m6l9kn4"><span class="sc-htpNat dcTkON" role="img" aria-label="Merge checks"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation"><g fill="currentColor" fill-rule="evenodd"><rect x="10" y="15" width="8" height="2" rx="1"></rect><rect x="6" y="15" width="2" height="2" rx="1"></rect><rect x="10" y="11" width="8" height="2" rx="1"></rect><rect x="6" y="11" width="2" height="2" rx="1"></rect><rect x="10" y="7" width="8" height="2" rx="1"></rect><rect x="6" y="7" width="2" height="2" rx="1"></rect></g></svg></span></span><span class="css-1q27zj9 e1m6l9kn2"><div><span class="fjs-text"></span></span></div></span></button>
+					<button aria-controls="expanderId-0" aria-expanded="true" data-testid="" class="css-1o91c15 e1m6l9kn1">
+						<span class="css-1b5prcp e1m6l9kn4">
+							<span class="sc-htpNat dcTkON" role="img" aria-label="Merge checks">
+								<svg width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation"><g fill="currentColor" fill-rule="evenodd"><rect x="10" y="15" width="8" height="2" rx="1"></rect><rect x="6" y="15" width="2" height="2" rx="1"></rect><rect x="10" y="11" width="8" height="2" rx="1"></rect><rect x="6" y="11" width="2" height="2" rx="1"></rect><rect x="10" y="7" width="8" height="2" rx="1"></rect><rect x="6" y="7" width="2" height="2" rx="1"></rect></g></svg>
+							</span>
+						</span>
+						<span class="css-1q27zj9 e1m6l9kn2">
+							<div>
+								<span class="css-in3yi3 e10navn00 fjs-text">0 of 0</span> files reviewed
+							</div>
+						</span>
+					</button>
 					<div id="expanderId-22" aria-hidden="false" class="rah-static rah-static--height-auto" style="height: auto; overflow: visible;">
 						<div>
-							<div class="css-1hxpyht e1m6l9kn3"><div class="css-vjkoi3 e11gw9gu2">
-								<!-- empty -->
+							<div class="css-1hxpyht e1m6l9kn3">
+								<div class="progress-bar fjs-progress-bar"></div>
 							</div>
 						</div>
 					</div>

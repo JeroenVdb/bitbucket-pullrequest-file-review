@@ -11,7 +11,8 @@
   "content_scripts": [
     {
       "matches": ["https://bitbucket.org/*/pull-requests/*"],
-      "js": ["bitbucket-pr-file-review.js"],
+      "js": ["bb-pr-markfilesreviewed.js"],
+      "css": ["styles.css"],
       "run_at": "document_end"
     }
   ],

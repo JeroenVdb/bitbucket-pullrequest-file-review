@@ -13,7 +13,7 @@ jest.mock('../src/CodeItem');
 describe('PullRequestItem', function () {
 	it('create', function () {
 		const element = document.createElement('div');
-		const mock = jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue(element);
+		const mock = jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([element, document.createElement('div')]);
 		const pullRequest = new PullRequest();
 
 		expect(pullRequest.files.size).toBe(0);
@@ -23,6 +23,7 @@ describe('PullRequestItem', function () {
 	});
 
 	it('should add items', function () {
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
 		const pullRequest = new PullRequest();
 		pullRequest.addItem(new PullRequestItem(pullRequest, 'foo/bar.js'));
 
@@ -30,6 +31,7 @@ describe('PullRequestItem', function () {
 	});
 
 	it('should count number of files', function () {
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
 		const pullRequest = new PullRequest();
 		const fakePullRequestItem = new PullRequestItem(pullRequest, 'foobar');
 
@@ -53,6 +55,7 @@ describe('PullRequestItem', function () {
 	});
 
 	it('should count number of reviewed files', () => {
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
 		const pullRequest = new PullRequest();
 		const fakePullRequestItem = new PullRequestItem(pullRequest, 'foobar');
 
@@ -80,13 +83,39 @@ describe('PullRequestItem', function () {
 
 	it('should update the progress box', () => {
 
-		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue(document.createElement('div'));
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
 
 		const pullRequest = new PullRequest();
 		pullRequest.updateProgress();
 
-		expect(pullRequest.reviewProgressBox!.innerHTML).toContain('e10navn00');
+		expect(pullRequest.reviewProgressBox!.innerText).toContain('0 of 0');
+		expect(pullRequest.progressBar!.style.getPropertyValue('--progress')).toBe('0%');
 	});
+
+	/*it('should update the progress box when items are added and marked', () => {
+
+		jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
+
+		const pullRequest = new PullRequest();
+		pullRequest.addItem(new PullRequestItem())
+		pullRequest.updateProgress();
+
+		expect(pullRequest.reviewProgressBox!.innerText).toContain('1 of 2');
+		expect(pullRequest.progressBar!.style.getPropertyValue('--progress')).toBe('50%');
+	});*/
+
+	/*it('should get state from localStorage only once', () => {
+		const localStorageGetItemSpy = jest.spyOn(global.localStorage, 'getItem');
+		localStorageGetItemSpy.mockReturnValue('{}');
+
+		const pullRequest = new PullRequest();
+
+		expect(pullRequest.getState()).toStrictEqual({});
+		expect(localStorageGetItemSpy).toBeCalledTimes(1);
+
+		expect(pullRequest.getState()).toStrictEqual({});
+		expect(localStorageGetItemSpy).toBeCalledTimes(1);
+	});*/
 
 	it('should get state from localStorage', () => {
 

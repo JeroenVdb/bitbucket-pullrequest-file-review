@@ -1,0 +1,10 @@
+.progress-bar {
+	--progress: 0%;
+
+	height: 16px;
+	width: 100%;
+	border: 1px solid rgb(235, 236, 240);
+	border-radius: 4px;
+	background: linear-gradient(to right, #36b37e var(--progress), transparent 0);
+	background-repeat: no-repeat;
+}

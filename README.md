@@ -1,13 +1,14 @@
-# Stream Deck Google Meet Extension
+# Bitbucket Pull Request: Mark files as reviewed
 
-This is 1 part of the Google Meet Stream Deck plugin.
+Short: bb-pr-markfilesreviewed
 
-You will also need to install
+This extensions bring you a fantastic feature of [Github](https://github.blog/2019-07-01-mark-files-as-viewed/) and an announced one for [Bitbucket cloud](https://jira.atlassian.com/browse/BCLOUD-19679). 
 
-- Stream Deck plugin: https://github.com/JeroenVdb/streamdeck-googlemeet
-- Chrome native messaging bridge: https://github.com/JeroenVdb/streamdeck-googlemeet-messaging-bridge
+This extension only works with the new beta pull request experience of Atlassian Bitbucket cloud. You can enable this feature [via a lab](https://bitbucket.org/blog/bitbuckets-new-code-review-offers-reviewers-a-fast-track-to-approving-changes).
 
-_Developed and tested on MacOS, might need some work for Windows._
+We use the "collapsible diffs" feature as a way to mark files as reviewed and style them appropriately.
+
+(!) important: files that are marked reviewed and later on are changed will not be unmarked as reviewed. This should be part of the official feature of course.
 
 ## Install
 

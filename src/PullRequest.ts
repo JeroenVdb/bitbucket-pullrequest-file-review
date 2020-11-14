@@ -3,11 +3,14 @@ import { PullRequestPage } from './PullRequestPage';
 
 export class PullRequest {
 	files: Map<string, PullRequestItem>;
-	reviewProgressBox: Element | null;
+	reviewProgressBox: HTMLElement | null;
+	progressBar: HTMLElement | null;
+	state: null;
 
 	constructor() {
 		this.files = new Map();
-		this.reviewProgressBox = PullRequestPage.addReviewProgress();
+		[this.reviewProgressBox, this.progressBar] = PullRequestPage.addReviewProgress();
+		this.state = null;
 	}
 
 	addItem(item: PullRequestItem) {
@@ -30,12 +33,26 @@ export class PullRequest {
 
 	updateProgress() {
 		if (this.reviewProgressBox) {
-			this.reviewProgressBox.innerHTML = `<span class="css-in3yi3 e10navn00"><span>${this.numberOfReviewedFiles()} of ${this.numberOfFiles()}</span></span> <span>files reviewed</span>`;
+			this.reviewProgressBox.innerText = `${this.numberOfReviewedFiles()} of ${this.numberOfFiles()}`;
+		}
+
+		if (this.progressBar) {
+			this.progressBar.style.setProperty('--progress', this.progressToPercent() + '%')
 		}
 	}
 
+	progressToPercent() {
+		if (this.numberOfReviewedFiles() === 0) {
+			return '0';
+		}
+
+		return (this.numberOfReviewedFiles() / this.numberOfFiles()) * 100;
+	}
+
 	getState(): pullRequestState {
-		return JSON.parse(window.localStorage.getItem(PullRequestPage.getLocalStorageKey()) || '{}');
+		return this.state
+			? this.state
+			: JSON.parse(window.localStorage.getItem(PullRequestPage.getLocalStorageKey()) || '{}');
 	}
 
 	syncState() {
@@ -51,4 +68,4 @@ export class PullRequest {
 	}
 }
 
-type pullRequestState = { [key: string]: boolean }
+type pullRequestState = { [key: string]: boolean };

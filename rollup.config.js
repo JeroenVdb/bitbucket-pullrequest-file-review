@@ -3,9 +3,9 @@ import typescript from '@rollup/plugin-typescript';
 export default {
 	input: 'src/index.ts',
 	output: {
-		file: 'build/bitbucket-pr-file-review.js',
+		file: 'build/bb-pr-markfilesreviewed.js',
 		format: 'iife',
-		name: 'prfilereview'
+		name: 'bbprmarkfilesreviewed'
 	},
 	treeshake: false,
 	plugins: [
