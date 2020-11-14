@@ -95,7 +95,8 @@ var prfilereview = (function (exports) {
             if (codeItemElement === null) {
                 throw Error(`No code item found for file ${filePath}`);
             }
-            this.domElement = codeItemElement;
+            this.codeItemElement = codeItemElement;
+            this.codeItemHeaderElement = null;
             this.pullRequestItem = pullRequestItem;
         }
         markReviewed() {
@@ -106,12 +107,23 @@ var prfilereview = (function (exports) {
             this.colorHeader(this.pullRequestItem.filePath);
         }
         colorHeader(filePath) {
-            const codeItemHeader = PullRequestPage.getCodeItemHeader(filePath);
+            const codeItemHeader = this.getCodeItemHeader(filePath);
             if (codeItemHeader === null) {
                 console.log(`code item header for ${filePath} was not yet rendered`);
                 return;
             }
             codeItemHeader.style.background = '#e3fcef';
+        }
+        getCodeItemHeader(filePath) {
+            let codeItemHeaderElement = null;
+            if (this.codeItemHeaderElement) {
+                codeItemHeaderElement = this.codeItemHeaderElement;
+            }
+            else {
+                codeItemHeaderElement = PullRequestPage.getCodeItemHeader(filePath);
+                this.codeItemHeaderElement = codeItemHeaderElement;
+            }
+            return codeItemHeaderElement;
         }
         addControls() {
             PullRequestPage.addActionButton(this.pullRequestItem.filePath, this.reviewButton());

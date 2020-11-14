@@ -15,7 +15,7 @@ describe('OverviewItem', function () {
 		const mock = jest.spyOn(PullRequestPage, 'getCodeItemElement').mockReturnValue(element);
 
 		const codeItem = new CodeItem('foo/bar.js', fakePullRequestItem);
-		expect(codeItem.domElement).toBe(element);
+		expect(codeItem.codeItemElement).toBe(element);
 
 		mock.mockRestore();
 	});
@@ -37,6 +37,7 @@ describe('OverviewItem', function () {
 		const codeItem = new CodeItem('foo/bar.js', fakePullRequestItem);
 		codeItem.markReviewed();
 		expect(element.style.background).toBe('rgb(227, 252, 239)');
+		expect(mock).toHaveBeenCalledTimes(1);
 
 		mock.mockRestore();
 	});
@@ -48,6 +49,21 @@ describe('OverviewItem', function () {
 		const codeItem = new CodeItem('foo/bar.js', fakePullRequestItem);
 		codeItem.setReviewed();
 		expect(element.style.background).toBe('rgb(227, 252, 239)');
+		expect(mock).toHaveBeenCalledTimes(1);
+
+		mock.mockRestore();
+	});
+
+	it('should cache the dom element when the element is set reviewed multiple times', function () {
+		const element = document.createElement('div');
+		const mock = jest.spyOn(PullRequestPage, 'getCodeItemHeader').mockReturnValue(element);
+
+		const codeItem = new CodeItem('foo/bar.js', fakePullRequestItem);
+		codeItem.setReviewed();
+		codeItem.setReviewed();
+		codeItem.setReviewed();
+		expect(element.style.background).toBe('rgb(227, 252, 239)');
+		expect(mock).toHaveBeenCalledTimes(1);
 
 		mock.mockRestore();
 	});
@@ -57,7 +73,7 @@ describe('OverviewItem', function () {
 		jest.spyOn(console, 'log');
 
 		const codeItem = new CodeItem('foo/bar.js', fakePullRequestItem);
-		codeItem.colorHeader('foo/bar.js');
+		codeItem.setReviewed();
 		expect(console.log).toBeCalledTimes(1);
 
 		mock.mockRestore();

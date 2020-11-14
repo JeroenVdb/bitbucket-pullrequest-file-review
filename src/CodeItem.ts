@@ -5,7 +5,8 @@ export interface CodeItemElement extends Element {}
 
 export class CodeItem {
 	pullRequestItem: PullRequestItem;
-	domElement: CodeItemElement;
+	codeItemElement: CodeItemElement;
+	codeItemHeaderElement: Element | null;
 
 	constructor(filePath: string, pullRequestItem: PullRequestItem) {
 		const codeItemElement = PullRequestPage.getCodeItemElement(filePath);
@@ -14,7 +15,8 @@ export class CodeItem {
 			throw Error(`No code item found for file ${filePath}`);
 		}
 
-		this.domElement = codeItemElement;
+		this.codeItemElement = codeItemElement;
+		this.codeItemHeaderElement = null;
 		this.pullRequestItem = pullRequestItem;
 	}
 
@@ -28,7 +30,7 @@ export class CodeItem {
 	}
 
 	private colorHeader(filePath: string) {
-		const codeItemHeader = PullRequestPage.getCodeItemHeader(filePath);
+		const codeItemHeader = this.getCodeItemHeader(filePath);
 
 		if (codeItemHeader === null) {
 			console.log(`code item header for ${filePath} was not yet rendered`);
@@ -36,6 +38,19 @@ export class CodeItem {
 		}
 
 		(codeItemHeader as HTMLElement).style.background = '#e3fcef';
+	}
+
+	private getCodeItemHeader(filePath: string) {
+		let codeItemHeaderElement = null;
+
+		if (this.codeItemHeaderElement) {
+			codeItemHeaderElement = this.codeItemHeaderElement;
+		} else {
+			codeItemHeaderElement = PullRequestPage.getCodeItemHeader(filePath);
+			this.codeItemHeaderElement = codeItemHeaderElement;
+		}
+
+		return codeItemHeaderElement;
 	}
 
 	addControls() {
