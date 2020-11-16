@@ -8,3 +8,7 @@
 	background: linear-gradient(to right, #36b37e var(--progress), transparent 0);
 	background-repeat: no-repeat;
 }
+
+.js-mark-reviewed {
+	background-color: #e3fcef !important;
+}

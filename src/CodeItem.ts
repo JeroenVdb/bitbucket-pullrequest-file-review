@@ -37,7 +37,7 @@ export class CodeItem {
 			return;
 		}
 
-		(codeItemHeader as HTMLElement).style.background = '#e3fcef';
+		(codeItemHeader as HTMLElement).classList.add('js-mark-reviewed');
 	}
 
 	private getCodeItemHeader(filePath: string) {

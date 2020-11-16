@@ -1,5 +1,5 @@
 {
-  "name": "Bitbucket Pull Request File review",
+  "name": "Bitbucket Pull Request File Review",
   "version": "1.0",
   "description": "Mark individual files as reviewed in Bitbucket Pull Requests",
   "manifest_version": 2,
@@ -21,8 +21,5 @@
       "background.js"
     ],
     "persistent": false
-  },
-  "browser_action": {
-    "default_icon": "focus.png"
   }
 }

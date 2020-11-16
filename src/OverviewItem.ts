@@ -16,10 +16,10 @@ export class OverviewItem {
 	}
 
 	markReviewed() {
-		this.domElement.style.background = '#e3fcef';
+		this.domElement.classList.add('js-mark-reviewed');
 	}
 
 	setReviewed() {
-		this.domElement.style.background = '#e3fcef';
+		this.domElement.classList.add('js-mark-reviewed');
 	}
 }
