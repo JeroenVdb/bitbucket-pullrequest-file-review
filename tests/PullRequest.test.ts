@@ -110,16 +110,36 @@ describe('PullRequestItem', function () {
 			expect(pullRequest.progressBar!.style.getPropertyValue('--progress')).toBe('0%');
 		});
 
-		/*it('should update the progress box when items are added and marked', () => {
+		it('should update the progress box when items are added and marked', () => {
 			jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
 
 			const pullRequest = new PullRequest();
-			pullRequest.addItem(new PullRequestItem())
+			const fakePullRequestItem = new PullRequestItem(pullRequest, 'foobar');
+
+			mocked(PullRequestItem).mockImplementation((pullRequest: PullRequest, filePath: string) => {
+				return {
+					filePath: filePath,
+					pullRequest: pullRequest,
+					overviewItem: new OverviewItem(filePath),
+					codeItem: new CodeItem(filePath, fakePullRequestItem),
+					reviewed: reviewState.NOT_REVIEWED,
+					markReviewed() {},
+					setReviewed() {},
+					setAsReviewed() {}
+				}
+			});
+
+			pullRequest.addItem(new PullRequestItem(pullRequest, 'foo/bar1.js'));
+			pullRequest.addItem(new PullRequestItem(pullRequest, 'foo/bar2.js'));
+
+			pullRequest.files.get('foo/bar1.js')!.reviewed = reviewState.REVIEWED;
+
+
 			pullRequest.updateProgress();
 
 			expect(pullRequest.reviewProgressBox!.innerText).toContain('1 of 2');
 			expect(pullRequest.progressBar!.style.getPropertyValue('--progress')).toBe('50%');
-		});*/
+		});
 	});
 
 	describe('pullRequest.getState', function() {
@@ -136,19 +156,18 @@ describe('PullRequestItem', function () {
 			expect(pullRequest.getState()).toStrictEqual({});
 		});
 
-		/*it('should get state from localStorage only once', () => {
-			const localStorageGetItemSpy = jest.spyOn(global.localStorage, 'getItem');
-			localStorageGetItemSpy.mockReturnValue('{}');
+		it('should get state from localStorage only once', () => {
+			jest.spyOn(PullRequestPage, 'addReviewProgress').mockReturnValue([document.createElement('div'), document.createElement('div')]);
+			jest.spyOn(window.localStorage.__proto__, "getItem").mockReturnValue('{}');
 
 			const pullRequest = new PullRequest();
 
 			expect(pullRequest.getState()).toStrictEqual({});
-			expect(localStorageGetItemSpy).toBeCalledTimes(1);
+			expect(localStorage.getItem).toBeCalledTimes(1);
 
 			expect(pullRequest.getState()).toStrictEqual({});
-			expect(localStorageGetItemSpy).toBeCalledTimes(1);
-		});*/
-
+			expect(localStorage.getItem).toBeCalledTimes(1);
+		});
 	});
 
 	describe('pullRequest.syncState', function() {

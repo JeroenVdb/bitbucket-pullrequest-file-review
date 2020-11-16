@@ -5,7 +5,7 @@ export class PullRequest {
 	files: Map<string, PullRequestItem>;
 	reviewProgressBox: HTMLElement | null;
 	progressBar: HTMLElement | null;
-	state: null;
+	state: pullRequestState | null;
 
 	constructor() {
 		this.files = new Map();
@@ -50,15 +50,18 @@ export class PullRequest {
 	}
 
 	getState(): pullRequestState {
-		return this.state
-			? this.state
-			: JSON.parse(window.localStorage.getItem(PullRequestPage.getLocalStorageKey()) || '{}');
+		if (this.state === null) {
+			this.state = <pullRequestState>JSON.parse(window.localStorage.getItem(PullRequestPage.getLocalStorageKey()) || '{}');
+		}
+
+		return this.state;
 	}
 
 	syncState() {
 		const state = this.getState();
 		for (const [filePath, isExpanded] of Object.entries(state)) {
-			if (isExpanded === false) {
+			const isCollapsed = !isExpanded;
+			if (isCollapsed) {
 				const file = this.files.get(filePath);
 				if (file) {
 					file.setReviewed();
