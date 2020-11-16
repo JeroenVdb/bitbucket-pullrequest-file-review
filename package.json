@@ -1,5 +1,5 @@
 {
-  "name": "Bitbucket Pull Request File Review",
+  "name": "bitbucket-pullrequest-file-review",
   "version": "1.0.0",
   "description": "Make the Google Meet logo clickable",
   "scripts": {
