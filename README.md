@@ -1,14 +1,15 @@
 # Bitbucket Pull Request: Mark files as reviewed
 
-Short: bb-pr-markfilesreviewed
-
-This extensions bring you a fantastic feature of [Github](https://github.blog/2019-07-01-mark-files-as-viewed/) and an announced one for [Bitbucket cloud](https://jira.atlassian.com/browse/BCLOUD-19679). 
+This extension brings you a fantastic feature of [Github](https://github.blog/2019-07-01-mark-files-as-viewed/) and an announced one for [Bitbucket cloud
+](https://jira.atlassian.com/browse/BCLOUD-19679): mark individual files of a pull request as reviewed.
 
 This extension only works with the new beta pull request experience of Atlassian Bitbucket cloud. You can enable this feature [via a lab](https://bitbucket.org/blog/bitbuckets-new-code-review-offers-reviewers-a-fast-track-to-approving-changes).
 
 We use the "collapsible diffs" feature as a way to mark files as reviewed and style them appropriately.
 
-(!) important: files that are marked reviewed and later on are changed will not be unmarked as reviewed. This should be part of the official feature of course.
+(!) important: files that are marked reviewed and later on are changed will not be unmarked as reviewed.
+
+(!) important: does only work when using "full screen" with the sidebar open
 
 ## Install
 
