@@ -4,46 +4,52 @@ import { PullRequestPage } from '../src/PullRequestPage';
 jest.mock('../src/PullRequestPage');
 
 describe('OverviewItem', function () {
-	it('create', function () {
-		const element = document.createElement('div');
-		const mock = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
+	describe('new OverviewItem', function() {
+		it('should create OverviewItem when code element is available on the page', function () {
+			const element = document.createElement('div');
+			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
 
-		const overviewItem = new OverviewItem('foo/bar.js');
-		expect(overviewItem.domElement).toBe(element);
+			const overviewItem = new OverviewItem('foo/bar.js');
+			expect(overviewItem.domElement).toBe(element);
 
-		mock.mockRestore();
+			getOverviewItemElementSpy.mockRestore();
+		});
+
+		it('should throw an error when overview element is not on the page', function () {
+			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(null);
+
+			expect(() => {
+				new OverviewItem('foo/bar.js')
+			}).toThrow();
+
+			getOverviewItemElementSpy.mockRestore();
+		});
 	});
 
-	it('throw when item is not found', function () {
-		const mock = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(null);
+	describe('overviewItem.markReviewed', function() {
+		it('should color the overview item green', function () {
+			const element = document.createElement('div');
+			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
 
-		expect(() => {
-			new OverviewItem('foo/bar.js')
-		}).toThrow();
+			const overviewItem = new OverviewItem('foo/bar.js');
+			overviewItem.markReviewed();
+			expect(overviewItem.domElement.style.background).toBe('rgb(227, 252, 239)');
 
-		mock.mockRestore();
+			getOverviewItemElementSpy.mockRestore();
+		});
 	});
 
-	it('mark reviewed', function () {
-		const element = document.createElement('div');
-		const mock = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
+	describe('overviewItem.setReviewed', function() {
+		it('should color the overview item green when OverviewItem is set reviewed', function () {
+			const element = document.createElement('div');
+			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
 
-		const overviewItem = new OverviewItem('foo/bar.js');
-		overviewItem.markReviewed();
-		expect(overviewItem.domElement.style.background).toBe('rgb(227, 252, 239)');
+			const overviewItem = new OverviewItem('foo/bar.js');
+			overviewItem.setReviewed();
+			expect(overviewItem.domElement.style.background).toBe('rgb(227, 252, 239)');
 
-		mock.mockRestore();
-	});
-
-	it('set as reviewed', function () {
-		const element = document.createElement('div');
-		const mock = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
-
-		const overviewItem = new OverviewItem('foo/bar.js');
-		overviewItem.setReviewed();
-		expect(overviewItem.domElement.style.background).toBe('rgb(227, 252, 239)');
-
-		mock.mockRestore();
+			getOverviewItemElementSpy.mockRestore();
+		});
 	});
 });
 
