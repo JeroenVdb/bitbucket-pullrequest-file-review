@@ -1,7 +1,7 @@
 {
   "name": "bitbucket-pullrequest-file-review",
   "version": "1.0.0",
-  "description": "Make the Google Meet logo clickable",
+  "description": "Mark individual files as reviewed in Bitbucket Pull Requests",
   "scripts": {
     "test": "jest",
     "build": "npx rollup -c"
