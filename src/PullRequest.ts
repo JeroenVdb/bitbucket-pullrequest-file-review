@@ -1,5 +1,5 @@
 import { PullRequestItem, reviewState } from './PullRequestItem';
-import { PullRequestPage } from './PullRequestPage';
+import { PullRequestPage } from './repositories/PullRequestPage';
 
 export class PullRequest {
 	files: Map<string, PullRequestItem>;

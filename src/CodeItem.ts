@@ -1,5 +1,5 @@
 import { PullRequestItem } from './PullRequestItem';
-import { PullRequestPage } from './PullRequestPage';
+import { PullRequestPage } from './repositories/PullRequestPage';
 
 export interface CodeItemElement extends Element {}
 

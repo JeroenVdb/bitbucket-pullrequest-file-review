@@ -1,10 +1,11 @@
 import { PullRequest } from './PullRequest';
-import { PullRequestPage } from './PullRequestPage';
+import { PullRequestPage } from './repositories/PullRequestPage';
 import { PullRequestItem } from './PullRequestItem';
 
 declare global {
 	interface Window {
 		pullRequest: any;
+		__initial_state__: any;
 	}
 }
 
@@ -15,6 +16,8 @@ let pullRequest: PullRequest;
 const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 	if (PullRequestPage.codeReviewLoaded()) {
 		console.log('[bb-pr-markfilesreviewed] pull request is ready to be initiated');
+
+		PullRequestPage.getDiffStat();
 
 		pullRequest = new PullRequest();
 		window.clearInterval(checkCodeReviewLoadedAndInitialize);

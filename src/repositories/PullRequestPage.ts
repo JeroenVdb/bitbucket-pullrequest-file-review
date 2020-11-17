@@ -1,5 +1,5 @@
-import { CodeItemElement } from './CodeItem';
-import { OverviewItemElement } from './OverviewItem';
+import { CodeItemElement } from '../CodeItem';
+import { OverviewItemElement } from '../OverviewItem';
 
 export class PullRequestPage {
 	static getOverviewItemElement(filePath: string): OverviewItemElement | null {
@@ -101,5 +101,14 @@ export class PullRequestPage {
 
 	static getFilePathFromOverviewItemUrl(url: string) {
 		return url.substr(url.indexOf('chg-') + 4);
+	}
+
+	static getDiffStatApiUrl() {
+		return window.__initial_state__.repository.pullRequest.currentPullRequest.links.diffstat.href;
+	}
+
+	static getDiffStat() {
+		const url = PullRequestPage.getDiffStatApiUrl();
+		fetch(url).then(resp => console.log(resp))
 	}
 }

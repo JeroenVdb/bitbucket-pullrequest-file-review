@@ -1,4 +1,4 @@
-import { PullRequestPage } from '../src/PullRequestPage';
+import { PullRequestPage } from '../src/repositories/PullRequestPage';
 import { CodeItem } from '../src/CodeItem';
 import { PullRequestItem } from '../src/PullRequestItem';
 import { PullRequest } from '../src/PullRequest';

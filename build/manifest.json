@@ -4,6 +4,8 @@
   "description": "Mark individual files as reviewed in Bitbucket Pull Requests",
   "manifest_version": 2,
   "permissions": [
+    "https://bitbucket.org/",
+    "https://bitbucket.org/*",
     "https://bitbucket.org/*/pull-requests/*",
     "webNavigation",
     "activeTab"

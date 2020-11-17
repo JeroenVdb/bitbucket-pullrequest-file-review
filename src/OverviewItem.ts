@@ -1,4 +1,4 @@
-import { PullRequestPage } from './PullRequestPage';
+import { PullRequestPage } from './repositories/PullRequestPage';
 
 export interface OverviewItemElement extends HTMLElement {}
 

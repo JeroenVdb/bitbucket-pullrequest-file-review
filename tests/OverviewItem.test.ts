@@ -1,5 +1,5 @@
 import { OverviewItem } from '../src/OverviewItem';
-import { PullRequestPage } from '../src/PullRequestPage';
+import { PullRequestPage } from '../src/repositories/PullRequestPage';
 
 jest.mock('../src/PullRequestPage');
 

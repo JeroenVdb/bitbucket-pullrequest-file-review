@@ -1,5 +1,5 @@
 import { PullRequest } from "../src/PullRequest";
-import { PullRequestPage } from "../src/PullRequestPage";
+import { PullRequestPage } from "../src/repositories/PullRequestPage";
 import { PullRequestItem, reviewState } from "../src/PullRequestItem";
 import { mocked } from 'ts-jest/utils'
 import { OverviewItem } from "../src/OverviewItem";

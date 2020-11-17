@@ -1,6 +1,6 @@
-import {PullRequestPage} from "../src/PullRequestPage";
+import {PullRequestPage} from "../../src/repositories/PullRequestPage";
 
-import { codeItem, codeItemAnchor, codeItemHeader, codeItemHeaderClickableArea, overviewItem, pullRequestPage } from './pullRequestPageStubs';
+import { codeItem, codeItemAnchor, codeItemHeader, codeItemHeaderClickableArea, overviewItem, pullRequestPage } from '../pullRequestPageStubs';
 
 beforeEach(() => {
 	document.body.innerHTML = '';
