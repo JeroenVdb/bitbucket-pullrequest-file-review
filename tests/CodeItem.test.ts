@@ -48,7 +48,7 @@ describe('CodeItem', function () {
 
 			const codeItem = new CodeItem(MOCK_FILE_PATH, fakePullRequestItem);
 			codeItem.markReviewed();
-			expect(element.style.background).toBe('rgb(227, 252, 239)');
+			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 			expect(getCodeItemHeaderSpy).toHaveBeenCalledTimes(1);
 
 			getCodeItemHeaderSpy.mockRestore();
@@ -62,7 +62,7 @@ describe('CodeItem', function () {
 
 			const codeItem = new CodeItem(MOCK_FILE_PATH, fakePullRequestItem);
 			codeItem.setReviewed();
-			expect(element.style.background).toBe('rgb(227, 252, 239)');
+			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 			expect(getCodeItemHeaderSpy).toHaveBeenCalledTimes(1);
 
 			getCodeItemHeaderSpy.mockRestore();
@@ -76,7 +76,7 @@ describe('CodeItem', function () {
 			codeItem.setReviewed();
 			codeItem.setReviewed();
 			codeItem.setReviewed();
-			expect(element.style.background).toBe('rgb(227, 252, 239)');
+			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 			expect(getCodeItemHeaderSpy).toHaveBeenCalledTimes(1);
 
 			getCodeItemHeaderSpy.mockRestore();

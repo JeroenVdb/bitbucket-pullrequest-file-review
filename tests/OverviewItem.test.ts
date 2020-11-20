@@ -33,7 +33,7 @@ describe('OverviewItem', function () {
 
 			const overviewItem = new OverviewItem('foo/bar.js');
 			overviewItem.markReviewed();
-			expect(overviewItem.domElement.style.background).toBe('rgb(227, 252, 239)');
+			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 
 			getOverviewItemElementSpy.mockRestore();
 		});
@@ -46,7 +46,7 @@ describe('OverviewItem', function () {
 
 			const overviewItem = new OverviewItem('foo/bar.js');
 			overviewItem.setReviewed();
-			expect(overviewItem.domElement.style.background).toBe('rgb(227, 252, 239)');
+			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 
 			getOverviewItemElementSpy.mockRestore();
 		});
