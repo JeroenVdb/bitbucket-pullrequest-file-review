@@ -58,12 +58,17 @@ export class CodeItem {
 	}
 
 	reviewButton(): Element {
+		const buttonWrapper = document.createElement('div');
+		buttonWrapper.classList.add('button-wrapper');
+
 		const button = document.createElement('button');
 		button.innerText = 'Reviewed';
-		button.setAttribute('style', 'z-index: 500; position: absolute; top: 10px; right: 50px;');
 		button.addEventListener('click', () => {
 			this.pullRequestItem.markReviewed();
 		});
-		return button;
+
+		buttonWrapper.append(button);
+
+		return buttonWrapper;
 	}
 }
