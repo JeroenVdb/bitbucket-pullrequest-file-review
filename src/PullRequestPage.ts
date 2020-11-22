@@ -65,7 +65,7 @@ export class PullRequestPage {
 		return `${path[1]}/${path[2]}/${path[4]}:diffs-expanded-state`;
 	}
 
-	static 	addReviewProgress() {
+	static addReviewProgress() {
 		document
 			.querySelector('#PullRequestWelcomeTourTarget-Files')!
 			.parentElement!.insertAdjacentHTML('beforebegin', PullRequestPage.reviewProgressHTML());

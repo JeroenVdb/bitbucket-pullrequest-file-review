@@ -28,6 +28,7 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 			}
 		});
 
+		pullRequest.updateProgress();
 		pullRequest.syncState();
 
 		// @ts-ignore
