@@ -7,8 +7,8 @@ export class PullRequestItem {
 	filePath: string;
 	overviewItem: OverviewItem;
 	codeItem: CodeItem;
-
 	reviewed: reviewState;
+	foobar: string;
 
 	constructor(pullRequest: PullRequest, filePath: string) {
 		this.pullRequest = pullRequest;
@@ -16,6 +16,7 @@ export class PullRequestItem {
 		this.overviewItem = new OverviewItem(filePath);
 		this.codeItem = new CodeItem(filePath, this);
 		this.reviewed = reviewState.NOT_REVIEWED;
+		this.foobar = 'Hello!';
 
 		this.codeItem.addControls();
 	}

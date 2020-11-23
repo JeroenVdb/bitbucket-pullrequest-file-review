@@ -6,11 +6,13 @@ export class PullRequest {
 	reviewProgressBox: HTMLElement | null;
 	progressBar: HTMLElement | null;
 	state: pullRequestState | null;
+	foobar: string;
 
 	constructor() {
 		this.files = new Map();
 		[this.reviewProgressBox, this.progressBar] = PullRequestPage.addReviewProgress();
 		this.state = null;
+		this.foobar = 'hello!';
 	}
 
 	addItem(item: PullRequestItem) {

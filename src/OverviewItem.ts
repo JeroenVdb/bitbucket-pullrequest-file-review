@@ -4,6 +4,8 @@ export interface OverviewItemElement extends HTMLElement {}
 
 export class OverviewItem {
 	domElement: OverviewItemElement;
+	foobar: string;
+
 
 	constructor(filePath: string) {
 		const overviewItemElement = PullRequestPage.getOverviewItemElement(filePath);
@@ -13,6 +15,7 @@ export class OverviewItem {
 		}
 
 		this.domElement = overviewItemElement;
+		this.foobar = 'hello!';
 	}
 
 	markReviewed() {
