@@ -18,3 +18,6 @@ This Extension is not distributed via the Chrome Web Store, you should load as "
 1. Clone or download this repository
 1. Point the "load unpacked" to the build folder
 
+# Credits
+
+- Icons made by [Good Ware](https://www.flaticon.com/free-icon/results_1086912?term=checklist&page=1&position=41&related_item_id=1086912) from [www.flaticon.com](https://www.flaticon.com/)

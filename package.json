@@ -4,7 +4,8 @@
   "description": "Mark individual files as reviewed in Bitbucket Pull Requests",
   "scripts": {
     "test": "jest",
-    "build": "npx rollup -c"
+    "build": "npx rollup -c",
+    "build-extension": "zip -r extension-archive.zip ./build"
   },
   "author": "Jeroen Van den Berghe",
   "license": "ISC",

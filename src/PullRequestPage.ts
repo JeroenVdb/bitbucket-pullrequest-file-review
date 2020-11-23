@@ -47,15 +47,12 @@ export class PullRequestPage {
 	}
 
 	static codeReviewLoaded(): boolean {
-		return (
-			document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').length > 0 &&
-			document.querySelectorAll('[data-qa="pr-diff-file-styles"]').length > 0
-		);
+		return document.querySelectorAll('[id^=chg-]').length > 0;
 	}
 
 	static CodeAndOverviewItemsLoaded(): boolean {
 		return (
-			document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').length ===
+			document.querySelectorAll('[id^=chg-]').length ===
 			document.querySelectorAll('[data-qa="pr-diff-file-styles"]').length
 		);
 	}
@@ -99,7 +96,7 @@ export class PullRequestPage {
 			</div>`;
 	}
 
-	static getFilePathFromOverviewItemUrl(url: string) {
+	static getFilePathFromAnchorLink(url: string) {
 		return url.substr(url.indexOf('chg-') + 4);
 	}
 }

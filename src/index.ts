@@ -18,10 +18,10 @@ const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
 
 		pullRequest = new PullRequest();
 		window.clearInterval(checkCodeReviewLoadedAndInitialize);
-		document.querySelectorAll('#PullRequestWelcomeTourTarget-Files a').forEach((item: Element) => {
-			const link = item.getAttribute('href');
+		document.querySelectorAll('[id^=chg-]').forEach((item: Element) => {
+			const link = item.getAttribute('id');
 			if (link !== null) {
-				const filePath = PullRequestPage.getFilePathFromOverviewItemUrl(link);
+				const filePath = PullRequestPage.getFilePathFromAnchorLink(link);
 				pullRequest.addItem(
 					new PullRequestItem(pullRequest, filePath)
 				);

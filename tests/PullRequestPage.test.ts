@@ -113,7 +113,8 @@ describe('PullRequestPage', function () {
 
 	describe('PullRequestPage.getFilePathFromOverviewItemUrl', function() {
 		it('should get the proper filename and path from anchor link', function () {
-			expect(PullRequestPage.getFilePathFromOverviewItemUrl('https://bitbucket.org/persgroep/temptation-rules/pull-requests/401#chg-rules/test/features/dm-web--login-wall.feature')).toBe('rules/test/features/dm-web--login-wall.feature');
+			expect(PullRequestPage.getFilePathFromAnchorLink('https://bitbucket.org/persgroep/temptation-rules/pull-requests/401#chg-rules/test/features/dm-web--login-wall.feature')).toBe('rules/test/features/dm-web--login-wall.feature');
+			expect(PullRequestPage.getFilePathFromAnchorLink('chg-src/OverviewItem.ts')).toBe('src/OverviewItem.ts');
 		});
 	});
 });
