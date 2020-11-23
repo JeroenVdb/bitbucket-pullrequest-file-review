@@ -5,7 +5,7 @@ This extension brings you a fantastic feature of [Github](https://github.blog/20
 
 This extension only works with the new beta pull request experience of Atlassian Bitbucket cloud. You can enable this feature [via a lab](https://bitbucket.org/blog/bitbuckets-new-code-review-offers-reviewers-a-fast-track-to-approving-changes).
 
-We use the [collapsible diffs](https://support.atlassian.com/bitbucket-cloud/docs/try-the-new-pull-request-experience-in-bitbucket/#ThenewpullrequestexperienceinBitbucket-Collapsiblediffs) feature as a way to mark files as reviewed and style them appropriately.
+We use the [collapsible diffs](https://support.atlassian.com/bitbucket-cloud/docs/try-the-new-pull-request-experience-in-bitbucket/#ThenewpullrequestexperienceinBitbucket-Collapsiblediffs) feature as a way to mark files as reviewed and style them accordingly.
 
 (!) important: files that are marked reviewed and later on are changed will not be unmarked as reviewed.
 
