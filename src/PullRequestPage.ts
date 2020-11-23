@@ -53,7 +53,7 @@ export class PullRequestPage {
 	static CodeAndOverviewItemsLoaded(): boolean {
 		return (
 			document.querySelectorAll('[id^=chg-]').length ===
-			document.querySelectorAll('[data-qa="pr-diff-file-styles"]').length
+			document.querySelectorAll('[data-qa="bk-file__header"]').length
 		);
 	}
 
