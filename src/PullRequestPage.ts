@@ -63,9 +63,13 @@ export class PullRequestPage {
 	}
 
 	static addReviewProgress() {
-		document
-			.querySelector('#PullRequestWelcomeTourTarget-Files')!
-			.parentElement!.insertAdjacentHTML('beforebegin', PullRequestPage.reviewProgressHTML());
+		const sidebar = document.querySelector('#PullRequestWelcomeTourTarget-Files')?.parentElement;
+
+		if (sidebar === null || sidebar === undefined) {
+			return [null, null];
+		}
+
+		sidebar.insertAdjacentHTML('beforebegin', PullRequestPage.reviewProgressHTML());
 		return [ document.querySelector('.fjs-text') as HTMLElement, document.querySelector('.fjs-progress-bar') as HTMLElement ]
 	}
 
