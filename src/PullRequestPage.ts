@@ -103,4 +103,8 @@ export class PullRequestPage {
 	static getFilePathFromAnchorLink(url: string) {
 		return url.substr(url.indexOf('chg-') + 4);
 	}
+
+	static isPullRequestDetailPage(url: string) {
+		return url.match(/\/pull-requests\/[0-9]+/) !== null;
+	}
 }

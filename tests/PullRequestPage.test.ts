@@ -117,6 +117,13 @@ describe('PullRequestPage', function () {
 			expect(PullRequestPage.getFilePathFromAnchorLink('chg-src/OverviewItem.ts')).toBe('src/OverviewItem.ts');
 		});
 	});
+
+	describe('PullRequestPage.getFilePathFromOverviewItemUrl', function() {
+		it('should get the proper filename and path from anchor link', function () {
+			expect(PullRequestPage.isPullRequestDetailPage('https://bitbucket.org/jeroen/foobar/pull-requests/')).toBe(false);
+			expect(PullRequestPage.isPullRequestDetailPage('https://bitbucket.org/jeroen/foobar/pull-requests/123')).toBe(true);
+		});
+	});
 });
 
 

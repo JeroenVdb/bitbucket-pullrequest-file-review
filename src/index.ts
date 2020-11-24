@@ -13,6 +13,11 @@ console.log('[bb-pr-markfilesreviewed] is loaded');
 let pullRequest: PullRequest;
 
 const checkCodeReviewLoadedAndInitialize = window.setInterval(() => {
+	if (!PullRequestPage.isPullRequestDetailPage(location.href)) {
+		console.log('this is not a pull request detail page, stop everything');
+		window.clearInterval(checkCodeReviewLoadedAndInitialize);
+	}
+
 	if (PullRequestPage.codeReviewLoaded()) {
 		console.log('[bb-pr-markfilesreviewed] pull request is ready to be initiated');
 
