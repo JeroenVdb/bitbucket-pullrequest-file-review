@@ -54,7 +54,7 @@ describe('PullRequestItem', function () {
 				return {
 					filePath: filePath,
 					pullRequest: pullRequest,
-					overviewItem: new OverviewItem(filePath),
+					overviewItem: OverviewItem.createOverviewItem(filePath),
 					codeItem: new CodeItem(filePath, fakePullRequestItem),
 					reviewed: reviewState.NOT_REVIEWED,
 					markReviewed() {},
@@ -80,7 +80,7 @@ describe('PullRequestItem', function () {
 				return {
 					filePath: filePath,
 					pullRequest: pullRequest,
-					overviewItem: new OverviewItem(filePath),
+					overviewItem: OverviewItem.createOverviewItem(filePath),
 					codeItem: new CodeItem(filePath, fakePullRequestItem),
 					reviewed: reviewState.NOT_REVIEWED,
 					markReviewed() {},
@@ -120,7 +120,7 @@ describe('PullRequestItem', function () {
 				return {
 					filePath: filePath,
 					pullRequest: pullRequest,
-					overviewItem: new OverviewItem(filePath),
+					overviewItem: OverviewItem.createOverviewItem(filePath),
 					codeItem: new CodeItem(filePath, fakePullRequestItem),
 					reviewed: reviewState.NOT_REVIEWED,
 					markReviewed() {},
@@ -189,7 +189,7 @@ describe('PullRequestItem', function () {
 				return {
 					filePath: filePath,
 					pullRequest: pullRequest,
-					overviewItem: new OverviewItem(filePath),
+					overviewItem: OverviewItem.createOverviewItem(filePath),
 					codeItem: new CodeItem(filePath, fakePullRequestItem),
 					reviewed: reviewState.NOT_REVIEWED,
 					markReviewed() {},

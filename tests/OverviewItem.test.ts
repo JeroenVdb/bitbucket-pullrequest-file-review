@@ -9,18 +9,17 @@ describe('OverviewItem', function () {
 			const element = document.createElement('div');
 			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
 
-			const overviewItem = new OverviewItem('foo/bar.js');
-			expect(overviewItem.domElement).toBe(element);
+			const overviewItem = OverviewItem.createOverviewItem('foo/bar.js');
+			expect(overviewItem!.domElement).toBe(element);
 
 			getOverviewItemElementSpy.mockRestore();
 		});
 
-		it('should throw an error when overview element is not on the page', function () {
+		it('should return null when trying to create an overview element that is not on the page', function () {
 			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(null);
 
-			expect(() => {
-				new OverviewItem('foo/bar.js')
-			}).toThrow();
+			const overviewItem = OverviewItem.createOverviewItem('foo/bar.js');
+			expect(overviewItem).toBe(null);
 
 			getOverviewItemElementSpy.mockRestore();
 		});
@@ -31,8 +30,8 @@ describe('OverviewItem', function () {
 			const element = document.createElement('div');
 			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
 
-			const overviewItem = new OverviewItem('foo/bar.js');
-			overviewItem.markReviewed();
+			const overviewItem = OverviewItem.createOverviewItem('foo/bar.js');
+			overviewItem!.markReviewed();
 			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 
 			getOverviewItemElementSpy.mockRestore();
@@ -44,8 +43,8 @@ describe('OverviewItem', function () {
 			const element = document.createElement('div');
 			const getOverviewItemElementSpy = jest.spyOn(PullRequestPage, 'getOverviewItemElement').mockReturnValue(element);
 
-			const overviewItem = new OverviewItem('foo/bar.js');
-			overviewItem.setReviewed();
+			const overviewItem = OverviewItem.createOverviewItem('foo/bar.js');
+			overviewItem!.setReviewed();
 			expect(element.classList.contains('js-mark-reviewed')).toBeTruthy();
 
 			getOverviewItemElementSpy.mockRestore();

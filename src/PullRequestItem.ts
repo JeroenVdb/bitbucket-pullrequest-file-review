@@ -5,7 +5,7 @@ import { PullRequest } from './PullRequest';
 export class PullRequestItem {
 	pullRequest: PullRequest;
 	filePath: string;
-	overviewItem: OverviewItem;
+	overviewItem: OverviewItem | null;
 	codeItem: CodeItem;
 
 	reviewed: reviewState;
@@ -13,7 +13,7 @@ export class PullRequestItem {
 	constructor(pullRequest: PullRequest, filePath: string) {
 		this.pullRequest = pullRequest;
 		this.filePath = filePath;
-		this.overviewItem = new OverviewItem(filePath);
+		this.overviewItem = OverviewItem.createOverviewItem(filePath);
 		this.codeItem = new CodeItem(filePath, this);
 		this.reviewed = reviewState.NOT_REVIEWED;
 
@@ -21,13 +21,13 @@ export class PullRequestItem {
 	}
 
 	markReviewed() {
-		this.overviewItem.markReviewed();
+		this.overviewItem?.markReviewed();
 		this.codeItem.markReviewed();
 		this.setAsReviewed();
 	}
 
 	setReviewed() {
-		this.overviewItem.setReviewed();
+		this.overviewItem?.setReviewed();
 		this.codeItem.setReviewed();
 		this.setAsReviewed();
 	}

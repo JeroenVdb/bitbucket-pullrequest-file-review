@@ -5,13 +5,7 @@ export interface OverviewItemElement extends HTMLElement {}
 export class OverviewItem {
 	domElement: OverviewItemElement;
 
-	constructor(filePath: string) {
-		const overviewItemElement = PullRequestPage.getOverviewItemElement(filePath);
-
-		if (overviewItemElement === null) {
-			throw new Error(`No overview item found for file ${filePath}`);
-		}
-
+	constructor(overviewItemElement: OverviewItemElement) {
 		this.domElement = overviewItemElement;
 	}
 
@@ -21,5 +15,16 @@ export class OverviewItem {
 
 	setReviewed() {
 		this.domElement.classList.add('js-mark-reviewed');
+	}
+
+	static createOverviewItem(filePath: string) {
+		const overviewItemElement = PullRequestPage.getOverviewItemElement(filePath);
+
+		if (overviewItemElement === null) {
+			console.log(`No overview item found for file ${filePath}`);
+			return null;
+		} else {
+			return new this(overviewItemElement);
+		}
 	}
 }
