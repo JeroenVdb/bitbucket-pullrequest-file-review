@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "build": "npx rollup -c",
-    "build-extension": "zip -r extension-archive.zip ./build"
+    "build-extension": "zip -r ./build/extension-archive.zip ./build"
   },
   "author": "Jeroen Van den Berghe",
   "license": "ISC",

@@ -9,6 +9,8 @@ We use the [collapsible diffs](https://support.atlassian.com/bitbucket-cloud/doc
 
 (!) important: files that are marked reviewed and later on are changed will not be unmarked as reviewed.
 
+(!) important: won't work with Pull Request option "Load files" set to "Individually"
+
 ## Install
 
 This Extension is not distributed via the Chrome Web Store, you should load as "load unpacked". You'll find information here: https://developer.chrome.com/extensions/getstarted
