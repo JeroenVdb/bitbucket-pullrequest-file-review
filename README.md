@@ -13,7 +13,9 @@ We use the [collapsible diffs](https://support.atlassian.com/bitbucket-cloud/doc
 
 ## Install
 
-This Extension is not distributed via the Chrome Web Store, you should load as "load unpacked". You'll find information here: https://developer.chrome.com/extensions/getstarted
+Via the Chrome Web Store: https://chrome.google.com/webstore/detail/bitbucket-pull-request-fi/bllckhlhnfngflclpdalooiehmijjbaf
+
+Or load as "load unpacked" from this source. You'll find information here: https://developer.chrome.com/extensions/getstarted
 
 1. Clone or download this repository
 1. Point the "load unpacked" to the build folder
