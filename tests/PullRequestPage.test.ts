@@ -102,10 +102,10 @@ describe('PullRequestPage', function () {
 
 			// @ts-ignore
 			window.location = {
-				'pathname': '/persgroep/temptation-editor/pull-requests/176'
+				'pathname': '/company/repo/pull-requests/176'
 			}
 
-			expect(PullRequestPage.getLocalStorageKey()).toBe('persgroep/temptation-editor/176:diffs-expanded-state');
+			expect(PullRequestPage.getLocalStorageKey()).toBe('company/repo/176:diffs-expanded-state');
 
 			window.location = location;
 		});
@@ -113,7 +113,7 @@ describe('PullRequestPage', function () {
 
 	describe('PullRequestPage.getFilePathFromOverviewItemUrl', function() {
 		it('should get the proper filename and path from anchor link', function () {
-			expect(PullRequestPage.getFilePathFromAnchorLink('https://bitbucket.org/persgroep/temptation-rules/pull-requests/401#chg-rules/test/features/dm-web--login-wall.feature')).toBe('rules/test/features/dm-web--login-wall.feature');
+			expect(PullRequestPage.getFilePathFromAnchorLink('https://bitbucket.org/company/repo/pull-requests/401#chg-the/path/to/the/file.txt')).toBe('the/path/to/the/file.txt');
 			expect(PullRequestPage.getFilePathFromAnchorLink('chg-src/OverviewItem.ts')).toBe('src/OverviewItem.ts');
 		});
 	});

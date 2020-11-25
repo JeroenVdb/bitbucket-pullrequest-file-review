@@ -58,7 +58,7 @@ export class PullRequestPage {
 	}
 
 	static getLocalStorageKey() {
-		const path = location.pathname.split('/'); // /persgroep/temptation-editor/pull-requests/176
+		const path = location.pathname.split('/'); // /company/repo/pull-requests/176
 		return `${path[1]}/${path[2]}/${path[4]}:diffs-expanded-state`;
 	}
 
