@@ -63,13 +63,14 @@ export class PullRequestPage {
 	}
 
 	static addReviewProgress() {
-		const sidebar = document.querySelector('#PullRequestWelcomeTourTarget-Files')?.parentElement;
+		const sidebarFileTreeBox = document.querySelector('[aria-label="Sidebar"] section[aria-label="File tree"]')?.parentElement;
 
-		if (sidebar === null || sidebar === undefined) {
+		if (sidebarFileTreeBox === null || sidebarFileTreeBox === undefined) {
+			console.log(`Could not add review progress box, could not find parent element of "#PullRequestWelcomeTourTarget-Files"`)
 			return [null, null];
 		}
 
-		sidebar.insertAdjacentHTML('beforebegin', PullRequestPage.reviewProgressHTML());
+		sidebarFileTreeBox.insertAdjacentHTML('beforebegin', PullRequestPage.reviewProgressHTML());
 		return [ document.querySelector('.fjs-text') as HTMLElement, document.querySelector('.fjs-progress-bar') as HTMLElement ]
 	}
 
